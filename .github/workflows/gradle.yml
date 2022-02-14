@@ -35,4 +35,4 @@ jobs:
            docker build -t spring-cicd . 
            docker tag spring-cide jhdl0157/spring-cicd:${GITHUB_SHA::7} 
            docker push jhdl0157/spring-cicd:${GITHUB_SHA::7}
-
+  
