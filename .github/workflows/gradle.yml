@@ -38,7 +38,7 @@ jobs:
            docker push jhdl0157/spring-cicd:${GITHUB_SHA::7}
            
     - name: Deploy 
-      uses: appleboy/ssh-action@master 
+      uses: appleboy/ssh-action@master
       with: 
        host: ec2-54-180-136-76.ap-northeast-2.compute.amazonaws.com                                
        username: ec2-user 
