@@ -34,6 +34,6 @@ jobs:
       run: |
            docker login -u jhdl0157 -p 9494b877-1f4a-4233-90e6-c0cb3b425043
            docker build -t spring-cicd . 
-           docker tag spring-cide jhdl0157/spring-cicd
-           docker push jhdl0157/spring-cicd
+           docker tag spring-cide jhdl0157/spring-cicd:${GITHUB_SHA::7}
+           docker push jhdl0157/spring-cicd:${GITHUB_SHA::7}
   
