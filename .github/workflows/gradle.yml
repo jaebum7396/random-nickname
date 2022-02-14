@@ -45,8 +45,8 @@ jobs:
        key: ${{ secrets.PRIVATE_KEY }} 
        envs: GITHUB_SHA 
        script: |  
-        sudo docker pull jhdl0157/spring-cicd:${GITHUB_SHA::7} 
-        sudo docker tag jhdl0157/spring-cicd:${GITHUB_SHA::7} spring-cicd
-        sudo docker run -d -p 80:8080 spring-cicd
+            docker pull jhdl0157/spring-cicd:${GITHUB_SHA::7}
+            docker tag jhdl0157/spring-cicd:${GITHUB_SHA::7} spring-cicd
+            docker stop server
  
   
