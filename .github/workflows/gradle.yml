@@ -25,8 +25,14 @@ jobs:
       with:
         java-version: '8'
         distribution: 'adopt'
-    - name: Build with Gradle
-      run: chmod +x gradlew 
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-         
+    -name: Docker build
+       run: | 
+       docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }} 
+       docker build -t spring-cicd . 
+       docker tag spring-cide jhdl0157/spring-cicd:${GITHUB_SHA::7} 
+       docker push jhdl0157/spring-cicd:${GITHUB_SHA::7}
+

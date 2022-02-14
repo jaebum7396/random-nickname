@@ -17,6 +17,15 @@ configurations {
 repositories {
     mavenCentral()
 }
+jar {
+    enabled = false
+}
+bootJar{
+    archivesBaseName = 'app'
+    archiveFileName = 'app.jar'
+    archiveVersion = "0.0.0"
+}
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
