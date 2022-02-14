@@ -47,6 +47,6 @@ jobs:
        script: |  
             sudo docker pull jhdl0157/spring-cicd:${GITHUB_SHA::7}
             sudo docker tag jhdl0157/spring-cicd:${GITHUB_SHA::7} spring-cicd
-            sudo docker stop server
+            sudo docker stop spring-cicd
  
   
