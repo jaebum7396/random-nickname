@@ -26,6 +26,10 @@ jobs:
       with:
         java-version: '8.0.322+6'
         distribution: 'zulu'
+    - name: export env
+      uses: krisalay/export-env@v1.0.0
+      with:
+            filename: .env
         
     - name: Cache Gradle packages
       uses: actions/cache@v2
@@ -36,8 +40,12 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
               ${{ runner.os }}-gradle-
+              
+              
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      
+      
     - name: Build with Gradle
       run: ./gradlew build
       
