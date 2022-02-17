@@ -28,6 +28,8 @@ jobs:
         distribution: 'zulu'
     - name: export env
       uses: krisalay/export-env@v1.0.0
+      env:
+           MY_NAME: ${{ secrets.MY_NAME }}
       with:
             filename: .env
         
