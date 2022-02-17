@@ -26,12 +26,14 @@ jobs:
       with:
         java-version: '8.0.322+6'
         distribution: 'zulu'
-    - name: export env
-      uses: krisalay/export-env@v1.0.0
-      env:
-           MY_NAME: ${{ secrets.MY_NAME }}
+    - name: Write value to Properties-file
+      uses: christian-draeger/write-properties@1.0.2
       with:
-            filename: .env
+        path: './src/main/resources/application.properties'
+        property: |
+          'custom.myname'
+        value: |
+               '${{ secrets.MY_NAME }}'
         
     - name: Cache Gradle packages
       uses: actions/cache@v2
