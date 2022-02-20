@@ -29,14 +29,7 @@ jobs:
       with:
         java-version: '8.0.322+6'
         distribution: 'zulu'
-    - name: Write value to Properties-file
-      uses: christian-draeger/write-properties@1.1.0
-      with:
-        path: './src/main/resources/application.properties'
-        property: |
-          'custom.myname'
-        value: |
-               '${{ secrets.MY_NAME }}'
+
         
     - name: Cache Gradle packages
       uses: actions/cache@v2
@@ -47,22 +40,14 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
               ${{ runner.os }}-gradle-
-    - uses: actions/checkout@v2
-    - run: touch ./src/main/resources/application.yml
-    - run: echo "${{env.APPLICATION}}" > ./src/main/resources/application.yml
-    - uses: actions/upload-artifact@v2
-      with:
-        name: application.yml
-        path: ./src/main/resources/application.yml
+
               
               
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      working-directory: ${{ env.working-directory }}   
       
     - name: Build with Gradle
       run: ./gradlew build
-      working-directory: ${{ env.working-directory }}
   # 캐싱 관련 추가
     - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
@@ -82,7 +67,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with: 
        host: ec2-3-34-2-97.ap-northeast-2.compute.amazonaws.com                             
-       username: ubuntu
+       username: ec2-user
        key: ${{ secrets.PRIVATE_KEY }} 
        envs: GITHUB_SHA 
        script: |  
