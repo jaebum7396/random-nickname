@@ -29,12 +29,17 @@ public class TestController {
 
     @GetMapping("/nickname") public ResponseEntity<ListResult<String>> getnickname(@RequestParam(defaultValue = "2")  int count)
     {
-        return  new ResponseEntity<>(responseService.getListResult(nicknameService.makeNickname(count)), HttpStatus.OK);
+        return  new ResponseEntity<>(responseService.getListResult(nicknameService.makeRandomNickname(count)), HttpStatus.OK);
     }
     @GetMapping("/crawling")
     public String getCrawling() throws IOException {
         return nicknameService.getCraw();
     }
+    @GetMapping("/read")
+    public void getRead() {
+        nicknameService.makeRandomNickname(3);
+    }
+
 }
 
 
