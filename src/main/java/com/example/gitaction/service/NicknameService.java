@@ -1,5 +1,9 @@
 package com.example.gitaction.service;
 
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,22 +12,19 @@ import org.jsoup.select.Elements;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.IIOException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Collections.shuffle;
 
 @Service
+@Slf4j
 public class NicknameService {
 
 
@@ -38,26 +39,36 @@ public class NicknameService {
         }
         return nsa;
     }
-    public static List<String> makeRandomNickname(int count){
+    public static List<String> makeRandomNickname(int count) throws IOException {
         ClassPathResource noun = new ClassPathResource("noun.txt");
-        ClassPathResource adjective = new ClassPathResource("adjective.txt");
-        List<String> ranwords = new ArrayList<>();
-        try{
+        InputStream is = new BufferedInputStream(noun.getInputStream());
+            InputStreamReader inputStreamReader = new InputStreamReader(is);
+            Stream<String> streamOfString= new BufferedReader(inputStreamReader).lines();
+            String streamToString = streamOfString.collect(Collectors.joining());
+            //System.out.println(streamToString);
 
-            String nounwords[]=getWord(noun);
-            String adjwords[]=getWord(adjective);
-            System.out.println(nounwords.length);
-            System.out.println(adjwords.length);
-           for(int i=0;i<count;i++) {
-               int ran = (int) (Math.random() * (16720 + 1));
-               int ran2=(int) (Math.random() * (16721 + 1));
-               int ran3=(int) (Math.random() * (165 + 1));
-               //System.out.println(adjwords[ran3]+nounwords[ran]+" "+nounwords[ran2]);
-               ranwords.add(getPostWord(adjwords[ran3]+nounwords[ran],"과","와")+" "+nounwords[ran2]);
-               //System.out.println(getPostWord(adjwords[ran3]+nounwords[ran],"을","를")+" "+nounwords[ran2]);
-           }
-        } catch (IOException e) {
-            e.printStackTrace();
+        ClassPathResource adjective = new ClassPathResource("adjective.txt");
+        InputStream is2 = new BufferedInputStream(adjective.getInputStream());
+            InputStreamReader inputStreamReader2 = new InputStreamReader(is2);
+            Stream<String> streamOfString2= new BufferedReader(inputStreamReader2).lines();
+            String streamToStrings = streamOfString2.collect(Collectors.joining());
+           // System.out.println(streamToStrings);
+
+        //ClassPathResource noun = new ClassPathResource("noun.txt");
+        //ClassPathResource adjective = new ClassPathResource("adjective.txt");
+        List<String> ranwords = new ArrayList<>();
+
+        String nounwords[]=streamToString.split(",");
+        String adjwords[]=streamToStrings.split(",");
+//            System.out.println(nounwords.length);
+//            System.out.println(adjwords.length);
+        for(int i=0;i<count;i++) {
+            int ran = (int) (Math.random() * (16720 + 1));
+            int ran2=(int) (Math.random() * (16721 + 1));
+            int ran3=(int) (Math.random() * (165 + 1));
+            //System.out.println(adjwords[ran3]+nounwords[ran]+" "+nounwords[ran2]);
+            ranwords.add(getPostWord(adjwords[ran3]+nounwords[ran],"과","와")+" "+nounwords[ran2]);
+            //System.out.println(getPostWord(adjwords[ran3]+nounwords[ran],"을","를")+" "+nounwords[ran2]);
         }
         return  ranwords;
     }
