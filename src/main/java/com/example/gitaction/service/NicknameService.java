@@ -32,16 +32,26 @@ public class NicknameService {
     }
 
     public String getCraw() throws IOException  {
-        String url="https://ko.wiktionary.org/w/index.php?title=%EB%B6%84%EB%A5%98:%ED%95%9C%EA%B5%AD%EC%96%B4_%EB%AA%85%EC%82%AC&pagefrom=%EA%B4%80%EC%9A%A9%EC%96%B4#mw-pages";
-        Connection conn = Jsoup.connect(url);
-        Document html= conn.get();
-        Elements fileblocks=html.getElementsByClass("vector-body");
-        for(Element fileblock : fileblocks){
-            Elements files=fileblock.getElementsByTag("li");
-            for(Element elm : files) {
-                String text = elm.text();
-                //String href = elm.attr("title");
-                System.out.println(text);
+        String[] words  = {"가","거","고","구","그","기","까","나","너","노","누","느","니","다","더","도","두","드","디","따","라",
+                "러","로","루","르","리","마","머","모","무","므","미","바","버","보","부","브","비","빠","사","서","소","수","스",
+                "시","싸","아","어","오","우","으","이","자","저","조","주","즈","지","짜","차","처","초","추","츠","치",
+                "카","커","코","쿠","크","키","타","터","토","투","트","티","파","퍼","포","푸","프","피","하","허",
+                "호","후","흐","히"};
+        for(int i=0; i< words.length;i++) {
+            String url = "https://ko.wiktionary.org/w/index.php?title=분류:한국어_명사&from=";
+            Connection conn = Jsoup.connect(url+words[i]);
+            Document html = conn.get();
+            Elements fileblocks = html.getElementsByClass("mw-category-group");
+            for (Element fileblock : fileblocks) {
+                Elements files = fileblock.getElementsByTag("ul");
+                for (Element elm : files) {
+                    Elements text = elm.getElementsByTag("a");
+                    for (Element asd : text) {
+                        String tt = asd.attr("title");
+                        if ((tt.length() < 5)&&(tt.length()>1))
+                            System.out.println(tt);
+                    }
+                }
             }
         }
         return "success";
