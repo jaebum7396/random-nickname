@@ -1,4 +1,4 @@
-# githubActionCI-CD을 이용한 랜덤 닉네임 생성기 api서비스 
+# githubActionCI-CD을 이용한 근본없는 랜덤 닉네임 생성기 api서비스 
 
 오픈 API 요청 URL
 
@@ -13,12 +13,12 @@ https://bloodgang.shop/api/nickname
 
 ### 닉네임 요청 출력 메시지 JSON 예시
 랜덤 닉네임 3개 요청
-```
+``` bash
 curl --location --request GET 'https://bloodgang.shop/api/nickname?count=3'
 ```
 
-응답 
-```jsop
+응답Json예시
+```json
 {
     "success": true,
     "code": 0,
@@ -29,4 +29,36 @@ curl --location --request GET 'https://bloodgang.shop/api/nickname?count=3'
         "점잖은편도선염과 시방"
     ]
 }
+```
+---
+## 👽랜덤 닉네임 만드는 과정
+
+위키 백과사전에서 한글 형용사 모음을 크롤링후 txt파일로 저장 (166개)
+
+위키 백과사전에서 한글 명사 모음을 크롤링후 txt파일로 저장 (16721개)
+
+단어 조합
+
+형용사+명사+조사+명사
+
+나올수 있는 경우의 수
+
+46,412,245,606개
+
+## 단어에 따라서 조사를 사용하는 함수 구현
+
+한글 단어는 받침에따라서 을/를이 달라진다.
+ex) 사과를, 작품을 
+
+종성 구하는 공식
+```
+종성 = (문자유니코드 - 0xAC00) % 28
+```
+
+``` java
+ if(lastCharIndex > 0) {
+ //받침이 있을경우
+ } else {
+ //받침이 없을 경우
+ }
 ```
