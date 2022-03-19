@@ -27,7 +27,7 @@ import static java.util.Collections.shuffle;
 @Slf4j
 public class NicknameService {
 
-
+      //초기 버전의 닉네임
       static String noun[] = new String[]{"사과","대추","아이패드","대통령","마우스","대벌레","고양이","제이지","로션","탱크"};
       static String adjective[] = new String[]{"맛있는","멋진","사악한","매운","떫은","군침싹도는","마약한","민망한","표독스러운"};
     public List<String> makeNickname(int count){
@@ -39,38 +39,22 @@ public class NicknameService {
         }
         return nsa;
     }
+    //랜덤이 강한 닉네임 기능
     public static List<String> makeRandomNickname(int count) throws IOException {
-        ClassPathResource noun = new ClassPathResource("noun.txt");
-        InputStream is = new BufferedInputStream(noun.getInputStream());
-            InputStreamReader inputStreamReader = new InputStreamReader(is);
-            Stream<String> streamOfString= new BufferedReader(inputStreamReader).lines();
-            String streamToString = streamOfString.collect(Collectors.joining());
-            //System.out.println(streamToString);
-
-        ClassPathResource adjective = new ClassPathResource("adjective.txt");
-        InputStream is2 = new BufferedInputStream(adjective.getInputStream());
-            InputStreamReader inputStreamReader2 = new InputStreamReader(is2);
-            Stream<String> streamOfString2= new BufferedReader(inputStreamReader2).lines();
-            String streamToStrings = streamOfString2.collect(Collectors.joining());
-           // System.out.println(streamToStrings);
-
-        //ClassPathResource noun = new ClassPathResource("noun.txt");
-        //ClassPathResource adjective = new ClassPathResource("adjective.txt");
-        List<String> ranwords = new ArrayList<>();
-
-        String nounwords[]=streamToString.split(",");
-        String adjwords[]=streamToStrings.split(",");
-//            System.out.println(nounwords.length);
-//            System.out.println(adjwords.length);
+        List<String> nickName = new ArrayList<>();
+        String nounwords[]=getResource("noun.txt").split(",");
+        String adjwords[]=getResource("adjective.txt").split(",");
+        if (count>10)
+            count=10;
         for(int i=0;i<count;i++) {
-            int ran = (int) (Math.random() * (16720 + 1));
-            int ran2=(int) (Math.random() * (16721 + 1));
-            int ran3=(int) (Math.random() * (165 + 1));
-            //System.out.println(adjwords[ran3]+nounwords[ran]+" "+nounwords[ran2]);
-            ranwords.add(getPostWord(adjwords[ran3]+nounwords[ran],"과","와")+" "+nounwords[ran2]);
-            //System.out.println(getPostWord(adjwords[ran3]+nounwords[ran],"을","를")+" "+nounwords[ran2]);
+            int firstWord = (int) (Math.random() * (16720 + 1));
+            int secondWord=(int) (Math.random() * (16721 + 1));
+            int adjective=(int) (Math.random() * (165 + 1));
+            nickName.add(getPostWord(adjwords[adjective]+nounwords[firstWord],"과","와")
+                    +" "+nounwords[secondWord]);
+            log.info("1st: {},2st: {}, 3st: {}",firstWord,secondWord,adjective);
         }
-        return  ranwords;
+        return  nickName;
     }
     public static String [] getWord(ClassPathResource url) throws IOException {
         FileInputStream fileStream = null; // 파일 스트림
@@ -82,6 +66,14 @@ public class NicknameService {
         fileStream.close(); //스트림 닫기
         String word=new String(readBuffer);
         return word.split(",");
+    }
+    public static String getResource(String filename) throws IOException {
+        ClassPathResource Path = new ClassPathResource(filename);
+        InputStream inputStream = new BufferedInputStream(Path.getInputStream());
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        Stream<String> streamOfString= new BufferedReader(inputStreamReader).lines();
+        String streamToString = streamOfString.collect(Collectors.joining());
+        return streamToString;
     }
     public static String getPostWord(String str, String firstVal, String secondVal) {
 
