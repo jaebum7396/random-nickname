@@ -51,27 +51,29 @@ public class NicknameService {
 
 
     public static List<String> loopWord(int count,List<String> nickName,String[] Noun,String[] Adj){
+        int NounLen= Noun.length;
+        int AdjLen= Adj.length;
         for(int i=0;i<count;i++) {
-            int firstWord = (int) (Math.random() * (16720 + 1));
-            int secondWord=(int) (Math.random() * (16721 + 1));
-            int adjective=(int) (Math.random() * (165 + 1));
+            int firstWord = (int) (Math.random() * (NounLen));
+            int secondWord=(int) (Math.random() * (NounLen));
+            int adjective=(int) (Math.random() * (AdjLen));
             nickName.add(getPostWord(Adj[adjective] + Noun[firstWord],"과","와")
                     +" "+ Noun[secondWord]);
             log.info("1st: {},2st: {}, 3st: {}",firstWord,secondWord,adjective);
         }
         return nickName;
     }
-    public static String [] getWord(ClassPathResource url) throws IOException {
-        FileInputStream fileStream = null; // 파일 스트림
-        Path path = Paths.get(url.getURI());
-        fileStream = new FileInputStream(String.valueOf(path));// 파일 스트림 생성
-        //버퍼 선언
-        byte[ ] readBuffer = new byte[fileStream.available()];
-        while (fileStream.read( readBuffer ) != -1){}
-        fileStream.close(); //스트림 닫기
-        String word=new String(readBuffer);
-        return word.split(",");
-    }
+//    public static String [] getWord(ClassPathResource url) throws IOException {
+//        FileInputStream fileStream = null; // 파일 스트림
+//        Path path = Paths.get(url.getURI());
+//        fileStream = new FileInputStream(String.valueOf(path));// 파일 스트림 생성
+//        //버퍼 선언
+//        byte[ ] readBuffer = new byte[fileStream.available()];
+//        while (fileStream.read( readBuffer ) != -1){}
+//        fileStream.close(); //스트림 닫기
+//        String word=new String(readBuffer);
+//        return word.split(",");
+//    }
     public static String getResource(String filename) throws IOException {
         ClassPathResource Path = new ClassPathResource(filename);
         InputStream inputStream = new BufferedInputStream(Path.getInputStream());
