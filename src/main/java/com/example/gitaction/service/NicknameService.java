@@ -42,19 +42,24 @@ public class NicknameService {
     //랜덤이 강한 닉네임 기능
     public static List<String> makeRandomNickname(int count) throws IOException {
         List<String> nickName = new ArrayList<>();
-        String nounwords[]=getResource("noun.txt").split(",");
-        String adjwords[]=getResource("adjective.txt").split(",");
+        String nounWords[]=getResource("noun.txt").split(",");
+        String adjWords[]=getResource("adjective.txt").split(",");
         if (count>10)
             count=10;
+        return  loopWord(count,nickName,nounWords,adjWords);
+    }
+
+
+    public static List<String> loopWord(int count,List<String> nickName,String[] Noun,String[] Adj){
         for(int i=0;i<count;i++) {
             int firstWord = (int) (Math.random() * (16720 + 1));
             int secondWord=(int) (Math.random() * (16721 + 1));
             int adjective=(int) (Math.random() * (165 + 1));
-            nickName.add(getPostWord(adjwords[adjective]+nounwords[firstWord],"과","와")
-                    +" "+nounwords[secondWord]);
+            nickName.add(getPostWord(Adj[adjective] + Noun[firstWord],"과","와")
+                    +" "+ Noun[secondWord]);
             log.info("1st: {},2st: {}, 3st: {}",firstWord,secondWord,adjective);
         }
-        return  nickName;
+        return nickName;
     }
     public static String [] getWord(ClassPathResource url) throws IOException {
         FileInputStream fileStream = null; // 파일 스트림
