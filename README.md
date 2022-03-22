@@ -2,6 +2,7 @@
 
 오픈 API 요청 URL
 
+
 https://bloodgang.shop/api/nickname
 
 
