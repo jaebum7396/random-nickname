@@ -2,9 +2,11 @@
 
 오픈 API 요청 URL
 
+근본없는 닉네임
+https://bloodgang.shop/api/v1/nickname
 
-https://bloodgang.shop/api/nickname
-
+캐릭터 닉네임(3/30일 추가)
+https://bloodgang.shop/api/v1/character
 
 닉네임생성 요청 변수(Request Parameters)
 
@@ -13,7 +15,7 @@ https://bloodgang.shop/api/nickname
 |  count |int|1-10|선택(default=2)|결과 출력 건수|
 
 ### 닉네임 요청 출력 메시지 JSON 예시
-랜덤 닉네임 3개 요청
+랜덤 근본없는 닉네임 3개 요청
 ``` bash
 curl --location --request GET 'https://bloodgang.shop/api/nickname?count=3'
 ```
@@ -31,6 +33,27 @@ curl --location --request GET 'https://bloodgang.shop/api/nickname?count=3'
     ]
 }
 ```
+
+랜덤 캐릭터 닉네임 5개
+``` bash
+curl --location --request GET 'http://localhost:8080/api/v1/character?count=5'
+```
+응답Json예시
+```json
+{
+  "success": true,
+  "code": 0,
+  "msg": "성공하였습니다.",
+  "word": [
+    "곧은 스톰",
+    "케케묵은 스패로",
+    "네모난 구피",
+    "쉬운 스패로",
+    "있는 플루토"
+  ]
+}
+```
+
 ---
 ## 👽랜덤 닉네임 만드는 과정
 
