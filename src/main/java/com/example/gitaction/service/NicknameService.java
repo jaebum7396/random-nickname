@@ -39,17 +39,36 @@ public class NicknameService {
         }
         return nsa;
     }
+    public List<String> makeCharterNickname(int count) throws IOException {
+        List<String> nameList = new ArrayList<>();
+        String[] adjWords =getResource("adjective.txt").split(",");
+        String[] characters =getResource("Characters.txt").split(",");
+        if (count>10)
+            count=10;
+        return  loopWords(count,nameList,adjWords,characters);
+    }
     //랜덤이 강한 닉네임 기능
     public static List<String> makeRandomNickname(int count) throws IOException {
         List<String> nickName = new ArrayList<>();
-        String nounWords[]=getResource("noun.txt").split(",");
-        String adjWords[]=getResource("adjective.txt").split(",");
+        String[] nounWords =getResource("noun.txt").split(",");
+        String[] adjWords =getResource("adjective.txt").split(",");
         if (count>10)
             count=10;
         return  loopWord(count,nickName,nounWords,adjWords);
     }
+    //캐릭터버전
+    public static List<String> loopWords(int count,List<String> nickName,String[] Adj,String[] Charter){
+        int AdjLen= Adj.length;
+        int CharLen=Charter.length;
+        for(int i=0;i<count;i++) {
+            int secondWord=(int) (Math.random() * (CharLen));
+            int adjective=(int) (Math.random() * (AdjLen));
+            nickName.add(Adj[adjective]+" "+Charter[secondWord]);
+        }
+        return nickName;
+    }
 
-
+    //근본없는 닉네임 버전
     public static List<String> loopWord(int count,List<String> nickName,String[] Noun,String[] Adj){
         int NounLen= Noun.length;
         int AdjLen= Adj.length;
@@ -138,4 +157,5 @@ public class NicknameService {
         }
         return "success";
     }
+
 }

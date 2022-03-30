@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/v1")
 @RequiredArgsConstructor
 public class TestController {
     private final NicknameService nicknameService;
@@ -29,6 +29,10 @@ public class TestController {
 
    @GetMapping("/nickname") public ResponseEntity<ListResult<String>> getnickname(@RequestParam(defaultValue = "2")  int count) throws IOException {
         return  new ResponseEntity<>(responseService.getListResult(nicknameService.makeRandomNickname(count)), HttpStatus.OK);
+    }
+    @GetMapping("/character")
+    public ResponseEntity<ListResult<String>> getCharacterNickname(@RequestParam(defaultValue = "2") int count) throws  IOException{
+       return new ResponseEntity<>(responseService.getListResult(nicknameService.makeCharterNickname(count)),HttpStatus.OK);
     }
 
 
