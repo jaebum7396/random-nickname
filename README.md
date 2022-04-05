@@ -5,6 +5,7 @@
 근본없는 닉네임
 https://bloodgang.shop/api/v1/nickname
 
+
 캐릭터 닉네임(3/30일 추가)
 https://bloodgang.shop/api/v1/character
 
