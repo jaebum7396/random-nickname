@@ -58,6 +58,7 @@ curl --location --request GET 'http://localhost:8080/api/v1/character?count=5'
 ---
 ## 👽랜덤 닉네임 만드는 과정
 
+
 위키 백과사전에서 한글 형용사 모음을 크롤링후 txt파일로 저장 (166개)
 https://ko.wiktionary.org/wiki/%EB%B6%84%EB%A5%98:%ED%95%9C%EA%B5%AD%EC%96%B4_%EA%B4%80%ED%98%95%EC%82%AC%ED%98%95(%ED%98%95%EC%9A%A9%EC%82%AC)
 
