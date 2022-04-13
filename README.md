@@ -2,6 +2,7 @@
 
 오픈 API 요청 URL
 
+
 근본없는 닉네임
 https://bloodgang.shop/api/v1/nickname
 
