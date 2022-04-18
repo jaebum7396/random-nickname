@@ -19,7 +19,7 @@ https://bloodgang.shop/api/v1/character
 ### 닉네임 요청 출력 메시지 JSON 예시
 랜덤 근본없는 닉네임 3개 요청
 ``` bash
-curl --location --request GET 'https://bloodgang.shop/api/nickname?count=3'
+curl --location --request GET 'https://bloodgang.shop/api/v1/nickname?count=3'
 ```
 
 응답Json예시
