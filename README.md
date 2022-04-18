@@ -38,7 +38,7 @@ curl --location --request GET 'https://bloodgang.shop/api/v1/nickname?count=3'
 
 랜덤 캐릭터 닉네임 5개
 ``` bash
-curl --location --request GET 'http://localhost:8080/api/v1/character?count=5'
+curl --location --request GET 'https://bloodgang.shop/api/v1/character?count=5'
 ```
 응답Json예시
 ```json
