@@ -3,12 +3,12 @@
 오픈 API 요청 URL
 
 근본없는 닉네임
-http://ec2-13-124-217-236.ap-northeast-2.compute.amazonaws.com:8080/api/v1/nickname
+http://bloodgang.shop:8080/api/v1/nickname
 
 
 캐릭터 닉네임(3/30일 추가)
-http://ec2-13-124-217-236.ap-northeast-2.compute.amazonaws.com:8080/api/v1/character
-
+http://bloodgang.shop:8080/api/v1/character
+ 
 닉네임생성 요청 변수(Request Parameters)
 
 |요청변수|타입|허용값|필수/선택|설명|
