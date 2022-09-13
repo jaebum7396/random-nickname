@@ -3,11 +3,11 @@
 오픈 API 요청 URL
 
 근본없는 닉네임
-http://bloodgang.shop:8080/api/v1/nickname
+https://bloodgang.shop/api/v1/nickname
 
 
 캐릭터 닉네임(3/30일 추가)
-http://bloodgang.shop:8080/api/v1/character
+https://bloodgang.shop/api/v1/character
  
 닉네임생성 요청 변수(Request Parameters)
 
