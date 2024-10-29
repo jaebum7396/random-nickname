@@ -1,0 +1,40 @@
+server:
+  port: 8002
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${DISCOVERY_URL}
+
+spring:
+  application:
+    name: randomNickName
+  profiles:
+    #active: local
+    active: deploy
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  devtools:
+    restart:
+      enabled: 'true'
+    livereload:
+      enabled: 'true'
+
+logging:
+  level:
+    root: info
+    smile.math: WARN
+    com:
+      binance: WARN
+    org:
+      hibernate:
+        SQL: warn
+        type:
+          descriptor:
+            sql: warn
