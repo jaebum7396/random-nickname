@@ -25,11 +25,11 @@ public class RandomNickNameController {
     private final RandomNicknameService randomNicknameService;
     private final ResponseService responseService;
 
-   @GetMapping("/nickname") public ResponseEntity<ListResult<String>> getnickname(@RequestParam(defaultValue = "2")  int count) throws IOException {
+   @GetMapping("/nickname") public ResponseEntity<ListResult<String>> getnickname(@RequestParam(defaultValue = "1")  int count) throws IOException {
         return  new ResponseEntity<>(responseService.getListResult(randomNicknameService.makeRandomNickname(count)), HttpStatus.OK);
     }
     @GetMapping("/character")
-    public ResponseEntity<ListResult<String>> getCharacterNickname(@RequestParam(defaultValue = "2") int count) throws  IOException{
+    public ResponseEntity<ListResult<String>> getCharacterNickname(@RequestParam(defaultValue = "1") int count) throws  IOException{
        return new ResponseEntity<>(responseService.getListResult(randomNicknameService.makeCharterNickname(count)),HttpStatus.OK);
     }
 
