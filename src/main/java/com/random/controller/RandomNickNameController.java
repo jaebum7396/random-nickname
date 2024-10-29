@@ -1,9 +1,11 @@
-package com.example.gitaction;
+package com.random.controller;
 
 
-import com.example.gitaction.common.ListResult;
-import com.example.gitaction.common.service.ResponseService;
-import com.example.gitaction.service.NicknameService;
+import com.random.common.ListResult;
+import com.random.common.service.ResponseService;
+import com.random.service.RandomNicknameService;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +16,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+@RequestMapping(path = "/random/api/v1")
+@Api(tags = "RandomNickNameController")
+@Tag(name = "RandomNickNameController", description = "RandomNickNameController")
 @RestController
-@RequestMapping(path = "/api/v1")
 @RequiredArgsConstructor
-public class TestController {
-    private final NicknameService nicknameService;
+public class RandomNickNameController {
+    private final RandomNicknameService randomNicknameService;
     private final ResponseService responseService;
 
    @GetMapping("/nickname") public ResponseEntity<ListResult<String>> getnickname(@RequestParam(defaultValue = "2")  int count) throws IOException {
-        return  new ResponseEntity<>(responseService.getListResult(nicknameService.makeRandomNickname(count)), HttpStatus.OK);
+        return  new ResponseEntity<>(responseService.getListResult(randomNicknameService.makeRandomNickname(count)), HttpStatus.OK);
     }
     @GetMapping("/character")
     public ResponseEntity<ListResult<String>> getCharacterNickname(@RequestParam(defaultValue = "2") int count) throws  IOException{
-       return new ResponseEntity<>(responseService.getListResult(nicknameService.makeCharterNickname(count)),HttpStatus.OK);
+       return new ResponseEntity<>(responseService.getListResult(randomNicknameService.makeCharterNickname(count)),HttpStatus.OK);
     }
 
 

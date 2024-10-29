@@ -1,4 +1,4 @@
-package com.example.gitaction.common;
+package com.random.common;
 
 import lombok.Data;
 

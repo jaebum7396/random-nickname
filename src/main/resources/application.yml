@@ -10,7 +10,7 @@ eureka:
 
 spring:
   application:
-    name: randomNickName
+    name: random-nickname
   profiles:
     #active: local
     active: deploy

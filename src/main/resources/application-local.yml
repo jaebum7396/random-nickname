@@ -1,0 +1,9 @@
+cloud:
+  gateway:
+    #uri: ${LOCAL_URL}
+    uri: 'http://localhost'
+spring:
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: 'false'

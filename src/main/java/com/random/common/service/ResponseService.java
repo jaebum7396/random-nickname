@@ -1,9 +1,9 @@
-package com.example.gitaction.common.service;
+package com.random.common.service;
 
-import com.example.gitaction.common.CommonResponse;
-import com.example.gitaction.common.CommonResult;
-import com.example.gitaction.common.ListResult;
-import com.example.gitaction.common.SingleResult;
+import com.random.common.CommonResponse;
+import com.random.common.CommonResult;
+import com.random.common.ListResult;
+import com.random.common.SingleResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

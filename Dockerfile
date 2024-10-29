@@ -1,5 +1,4 @@
-FROM openjdk:8-jdk-alpine 
-ARG JAR_FILE=build/libs/gitaction-0.0.1-SNAPSHOT.jar
+FROM openjdk:11
+ARG JAR_FILE=./build/libs/random-nickname-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
-
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar"]
